@@ -77,13 +77,30 @@ Choose Custom install.
   
 Clicking Next.
 - ![image](https://github.com/user-attachments/assets/40348d76-6439-4a09-a09f-56b3d7162ba4)
-- 
 
+Aaaaand Windows Server 2019 is installed. 
+- ![image](https://github.com/user-attachments/assets/ee13dd4c-8e71-449a-93c2-28b3898ca12b)
 
+# Lets make our experience better
 
+On our Virtual Machine:
 
+- Devices
+- Insert Guest Addition CD image
+- Open File Explorer
+- This PC
+- CD Drive (D:) VirtualBox Guest Additions
+- Run VBoxWindowsAdditions-amd64
+- Reboot later
+- Shut VM down
+- Start VM 
 
+# Setting Our IP Addressing
 
+Click on the bottom right the network icon.
+![image](https://github.com/user-attachments/assets/8d4d98b0-4bf0-476a-bebf-b4def0da2fc1)
 
+Network & Internet settings.
+![image](https://github.com/user-attachments/assets/509d50ac-902f-4c50-84a8-90fd4b7fbd54)
 
-
+Change adapter options
