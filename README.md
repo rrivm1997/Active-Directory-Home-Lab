@@ -338,6 +338,16 @@ Now lets make sure that the internet is working.
 - DNS resolve.
 ![image](https://github.com/user-attachments/assets/d93fee97-2ef8-461f-b3ce-bac71ff975d1)
 
-And just like that, we created a home lab. 
+## Additional Settings
+- Change PC name
+- Join Domain
+- Restart
+![image](https://github.com/user-attachments/assets/3ccee68e-6e2f-4e1a-b5e2-86875dec2ad1)
+
+After restarting, log in using one of the accounts created by the script.
+![image](https://github.com/user-attachments/assets/ab089c67-c596-40c0-92fc-6295f8f27af5)
+
+
+# HOME LAB CREATED 
 
 
