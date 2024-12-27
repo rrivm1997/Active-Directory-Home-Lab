@@ -104,3 +104,39 @@ Network & Internet settings.
 ![image](https://github.com/user-attachments/assets/509d50ac-902f-4c50-84a8-90fd4b7fbd54)
 
 Change adapter options
+![image](https://github.com/user-attachments/assets/96d01c0d-c0ea-4936-93f2-a389c886ed21)
+
+From here we need to find out which is our internet adapter and which is the internal adapter. We do this by:
+  - Right click
+  - Status
+  - Details
+  - IPv4 Address
+
+Once I identify which adapter is which, I named them. 
+![image](https://github.com/user-attachments/assets/0ee79b90-cfee-4cc2-81fe-8a12c9790b3f)
+
+## Lets assigned the IP to our internal network
+- Right click internal adapter
+- Properties
+- Click IPv4
+- ![image](https://github.com/user-attachments/assets/c3378c23-4d9b-454a-8850-971dad253d33)
+
+Now I will assigned the IP  and Subnet mask as we saw on the Network Diagram.
+  - No gateway will be added because the DC will serve as the default gateway.
+![image](https://github.com/user-attachments/assets/a11182d6-1713-4d6e-aed0-0044cab2c509)
+
+
+## DNS Server
+
+Once Active Directory is install it automatically install DNS so this server is going to use itself as the DNS server. 
+- I can use the servers IP Adress or the loop back addres which is 172.0.0.1
+![image](https://github.com/user-attachments/assets/2b332241-1965-4ad3-8e4a-8fbd2ba69462)
+
+
+# Naming our PC
+- Rigth Click Start Menu
+- System
+- Rename this PC
+![image](https://github.com/user-attachments/assets/63827b4d-b610-4274-aa63-1619b16f56d3)
+
+# Installing Active Directory Domain Services (AD DS)
