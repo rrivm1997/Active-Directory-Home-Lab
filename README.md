@@ -23,6 +23,7 @@
 - Name the machine Client1 and join it to the domain and then we are going to log into it with one of our domain accounts. 
 
 # Windows Server 2019 
+
 I will be creating the first virtual machine:
 ![image](https://github.com/user-attachments/assets/c4cd816c-9dd2-476f-824d-6884d9abc1b3)
 
@@ -69,7 +70,7 @@ Install Now.
 Select either of the Desktop experience. The other two will be command lines.
 - ![image](https://github.com/user-attachments/assets/43217f4e-3af9-4ddb-81e2-cb08dd3861c6)
 
-Accep terms.
+Accept terms.
 - ![image](https://github.com/user-attachments/assets/fa9bb289-005f-47e7-bd2a-f0aa1842e982)
 
 Choose Custom install.
@@ -129,14 +130,174 @@ Now I will assigned the IP  and Subnet mask as we saw on the Network Diagram.
 ## DNS Server
 
 Once Active Directory is install it automatically install DNS so this server is going to use itself as the DNS server. 
-- I can use the servers IP Adress or the loop back addres which is 172.0.0.1
+- I can use the servers IP Address or the loop back address which is 172.0.0.1
 ![image](https://github.com/user-attachments/assets/2b332241-1965-4ad3-8e4a-8fbd2ba69462)
 
 
 # Naming our PC
-- Rigth Click Start Menu
+- Right Click Start Menu
 - System
 - Rename this PC
 ![image](https://github.com/user-attachments/assets/63827b4d-b610-4274-aa63-1619b16f56d3)
 
 # Installing Active Directory Domain Services (AD DS)
+
+Open Server Manager
+   - Add roles and features
+   - Next
+   - Role-based or feature based installation
+   - Select Server
+   - Choose AD DS
+   - Add features
+   - Next
+   - Install
+![image](https://github.com/user-attachments/assets/ff299ac6-14d3-4a75-b8ab-36bc0fb7cd98)
+
+We see a flag with a warning sign which is a notification. This indicates that we need to do our Post-deployment configuration. We install the software, but the domain has not been created yet.
+
+Lets click it.
+![image](https://github.com/user-attachments/assets/19bc4197-f323-4666-9ef2-99475b402ef2)
+
+On the Deployment Config page, select Add new forest and give it a name.
+![image](https://github.com/user-attachments/assets/392ad154-cca5-4002-af3d-aa5054a24ad3)
+
+Click next until installation and reboot. 
+
+# Creating Our Own Dedicated Domain Admin Account
+
+We do this by:
+- Click start.
+- Windows Administrative tools.
+- Active Directory Users and Computers.
+![image](https://github.com/user-attachments/assets/95519cf8-b418-484e-9858-00f0893b1c48)
+
+We see our newly created domain. In here, let's create an Organizational Unit to put our admin account in.
+![image](https://github.com/user-attachments/assets/847f89be-ed3d-424c-862f-b863fffcece5)
+
+Naming the new object.
+![image](https://github.com/user-attachments/assets/5bac6f9d-748b-45c0-a025-71e0dad5a2d3)
+
+Inside of the folder, I will create a new user.
+- Right click.
+- New.
+- New user.
+- Add the fields as suggested by the company.
+![image](https://github.com/user-attachments/assets/6a192594-0652-47bb-bc1d-56a90eaa6476)
+
+Account created. Now it needs to be changed to admin.
+![image](https://github.com/user-attachments/assets/d3cb9c93-7ba7-4927-a17a-d494f096f3f6)
+
+To do this:
+- Right click user.
+- Properties.
+- Member Of.
+- Add.
+- Type Domain Admins.
+- Check Names.
+- OK.
+![image](https://github.com/user-attachments/assets/390a0272-b696-415e-9204-b00f0c0481c7)
+
+Lets log out an use our new account. 
+
+On Other user I will input my new created account.
+![image](https://github.com/user-attachments/assets/b664931a-da41-425a-9968-fd1fb2e67c8c)
+
+
+# Installing Remote Access Server (RAS) and Network Address Translation (NAT)
+
+This is to allow our Windows 10 Client to be in the private virtual network but still allow it to access the internet through the Domain Controller. 
+
+## Install
+
+- Open Server Manager.
+- add roles and features.
+- Next.
+- Select our server.
+- Next.
+- Remote Access.
+- Next.
+- Select Routing.
+- Next.
+- Install.
+![image](https://github.com/user-attachments/assets/a22aae42-72d3-421a-b4b0-3556defd2182)
+
+After installation:
+- Click tools
+- Routing and Remote Access
+![image](https://github.com/user-attachments/assets/bb2f8ec9-b22c-41fa-b091-106f87e73d37)
+
+Now:
+- Right click DC (local).
+- Config and Enable.
+- Next.
+- NAT to allow internal client to connect to the internet. 
+- Next.
+- Choose the correct adapter to allow internet access.
+- Finish
+
+Now we see that the DC has an up green arrow so now its configured.
+![image](https://github.com/user-attachments/assets/7bc2a2a8-a9ff-47d5-b817-3b449962558d)
+
+# Configuring DHCP Server On Our DC With The Scope Information
+
+This willa allow our Windows 10 client to get an IP adress and be able to browse the internet. 
+
+## Installing
+
+- Open Server Manager.
+- Add roles and features.
+- Next.
+- Next.
+- Choose server.
+- DHCP Server.
+- Next until install
+
+After instalaltion:
+
+- Tools
+- DHCP
+
+Notice how the servers are red meaning they are down.
+![image](https://github.com/user-attachments/assets/e51c6626-1757-4cff-8a5a-a27648bb06c8)
+
+### Setting scope
+- Right click server
+- New Scope
+- Next
+- Name
+![image](https://github.com/user-attachments/assets/debc63de-cdb0-4ea2-998a-b5d999bb1fc5)
+
+Set scope
+![image](https://github.com/user-attachments/assets/03036ddc-785e-4e4b-a44f-816389c26e81)
+
+- Add exclusions if neccesary
+
+- Lease Duration will depend on use case. 
+
+- Configure DHCP Options, YES
+
+- Default gateway will be our Domain Controller since we setted up our RAS/NAT there.
+![image](https://github.com/user-attachments/assets/b445b691-f950-4a15-a651-8c6be11e0950)
+
+- Domain Namde and DNS Servers
+   - AD on the DC automatically install DNS
+ 
+- Dont care about WINS Servers
+
+- Activate Scope
+
+- Finish
+ 
+Now we need to Authorize and Refresh our server.
+  - Right click DC
+  - Authoriza
+  - Right click DC
+  - Refresh
+Now we see servers are green. 
+![image](https://github.com/user-attachments/assets/0205e41a-c537-4352-88a5-80c9db45389e)
+
+
+
+
+
+
