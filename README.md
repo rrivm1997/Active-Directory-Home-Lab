@@ -250,54 +250,94 @@ This willa allow our Windows 10 client to get an IP adress and be able to browse
 - Next.
 - Choose server.
 - DHCP Server.
-- Next until install
+- Next until install.
 
 After instalaltion:
 
-- Tools
-- DHCP
+- Tools.
+- DHCP.
 
 Notice how the servers are red meaning they are down.
 ![image](https://github.com/user-attachments/assets/e51c6626-1757-4cff-8a5a-a27648bb06c8)
 
 ### Setting scope
-- Right click server
-- New Scope
-- Next
-- Name
+- Right click server.
+- New Scope.
+- Next.
+- Name.
 ![image](https://github.com/user-attachments/assets/debc63de-cdb0-4ea2-998a-b5d999bb1fc5)
 
 Set scope
 ![image](https://github.com/user-attachments/assets/03036ddc-785e-4e4b-a44f-816389c26e81)
 
-- Add exclusions if neccesary
+- Add exclusions if neccesary.
 
 - Lease Duration will depend on use case. 
 
-- Configure DHCP Options, YES
+- Configure DHCP Options, YES.
 
 - Default gateway will be our Domain Controller since we setted up our RAS/NAT there.
 ![image](https://github.com/user-attachments/assets/b445b691-f950-4a15-a651-8c6be11e0950)
 
-- Domain Namde and DNS Servers
-   - AD on the DC automatically install DNS
+- Domain Namde and DNS Servers.
+   - AD on the DC automatically install DNS.
  
-- Dont care about WINS Servers
+- Dont care about WINS Servers.
 
-- Activate Scope
+- Activate Scope.
 
-- Finish
+- Finish.
  
 Now we need to Authorize and Refresh our server.
-  - Right click DC
-  - Authoriza
-  - Right click DC
-  - Refresh
+  - Right click DC.
+  - Authoriza.
+  - Right click DC.
+  - Refresh.
 Now we see servers are green. 
 ![image](https://github.com/user-attachments/assets/0205e41a-c537-4352-88a5-80c9db45389e)
 
+![image](https://github.com/user-attachments/assets/6b3701a0-93f1-4ca9-88e7-2b7db70bca7f)
+
+# Accessing The Intenert With The DC
+ - NOTE: THIS IS A LAB SO THIS CAN BE DONE. DO NOT DO THIS STEP ON A PROD ENVR.
+ - I am doing this to make it easy on me and download the script.
+![image](https://github.com/user-attachments/assets/b90a3def-0ac2-47a3-a2e6-b60e6c47a750)
 
 
+# Creating Users With a PowerShell Script in AD
 
+- Openning PowerShell ISE.
+![image](https://github.com/user-attachments/assets/93116005-3346-4a06-8d38-86b1d7a94f95)
+
+- Open the PowerShell script.
+![image](https://github.com/user-attachments/assets/9187a475-7718-4063-96d7-56dbbe22e7d7)
+
+## Enable execution of scripts
+
+- Only do this on labs
+  - Set-ExecutionPolicy Unrestricted.
+  - Change directory to where the script was saved.
+  - Run it.
+![image](https://github.com/user-attachments/assets/15f064c1-346a-4a0b-9c39-f387785ea354)
+
+All our users have been created.
+![image](https://github.com/user-attachments/assets/5808b539-f238-4230-80a4-9daf14837f02)
+
+![image](https://github.com/user-attachments/assets/0e95753d-336b-4044-a146-660751350cc6)
+
+# Creating The Windows 10 Virtual Machine
+
+I will do the same steps as I did with the Windows Server 2019 virtual machine. 
+
+![image](https://github.com/user-attachments/assets/ecc4b9f9-821e-4358-adc8-5b4868a488c0)
+
+Now lets make sure that the internet is working. 
+- IPv4.
+- Default Gateway.
+- Ping.
+- DNS resolve.
+![image](https://github.com/user-attachments/assets/d93fee97-2ef8-461f-b3ce-bac71ff975d1)
+
+And just like that, we created a home lab. 
 
 
