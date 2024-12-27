@@ -10,7 +10,7 @@
 
 - Download and install Oracle VirtualBox to run our virtual machines.
 - Download Windows 10 ISO and Server 2019 ISO.
-- Create our first virtual machine with is going to be our Domain Controller which is going to house Active Directory.
+- Create our first virtual machine wichh is going to be our Domain Controller which is going to house Active Directory.
   -  This virtual machine will have two network adapters:
      -  One for external connection to the internet.
      -  One private network that the client will connect to.
